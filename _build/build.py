@@ -54,15 +54,18 @@ SUBJECTS = [  # slug, title, levels, intro, bullets
      ["SAT Math", "SAT Reading and Writing", "Full practice tests with review", "Timing and test-day strategy",
       "A study plan up to your test date"]),
     ("gcse", "GCSE and IGCSE prep", "Years 9 to 11",
-     "Exam preparation for GCSE and IGCSE students in the UK and international schools across Europe.",
+     "Exam preparation for GCSE and IGCSE students in the UK and at international schools around the world.",
      ["Maths (Foundation and Higher)", "English Language", "Biology, Chemistry and Physics",
       "Past papers and mark schemes", "AQA, Edexcel, OCR and Cambridge"]),
 ]
 
 CURRICULA = [
     ("USA", "Common Core and state standards, grades 3 to 10, plus SAT."),
+    ("Canada", "Provincial curricula such as Ontario, British Columbia and Alberta, grades 3 to 10."),
     ("UK", "National Curriculum Key Stage 2 to 4, GCSE and IGCSE."),
-    ("Europe", "International schools: Cambridge, British curriculum and IB MYP."),
+    ("Europe", "Local and international schools across Europe, including British curriculum schools."),
+    ("Australia and New Zealand", "Australian Curriculum and the New Zealand Curriculum, including NCEA preparation."),
+    ("International schools", "Any country: Cambridge, IB PYP and MYP, and American curriculum schools."),
 ]
 
 STEPS = [
@@ -74,9 +77,9 @@ STEPS = [
 
 TUTORS = [  # role, tags, icon, description
     ("Maths tutor", "Grades 3 to 10 · Algebra · Geometry", "calc",
-     "Degree in mathematics or engineering and years of experience teaching school maths, including US and British curricula."),
+     "Degree in mathematics or engineering and years of experience teaching school maths, including American, British and Australian curricula."),
     ("English tutor", "Reading · Writing · Grammar", "book",
-     "Degree in English or education, fluent and clear spoken English, and experience with US and UK reading and writing standards."),
+     "Degree in English or education, fluent and clear spoken English, and experience with American, British and Australian reading and writing standards."),
     ("Science tutor", "Biology · Chemistry · Physics", "flask",
      "Degree in a science subject and experience teaching Cambridge, O Level and international school science."),
     ("Exam prep tutor", "SAT · GCSE · IGCSE", "star",
@@ -112,9 +115,9 @@ FAQS = [
     ("Who are the tutors?",
      "Qualified teachers and subject specialists based in Pakistan, with university degrees and years of teaching experience. Every tutor speaks fluent English and is trained in the curriculum your child follows."),
     ("Why tutors from Pakistan?",
-     "Pakistan has a large pool of highly educated teachers who already teach British and international curricula. That lets us offer experienced one-to-one tutors at a fraction of local prices in the USA or Europe."),
+     "Pakistan has a large pool of highly educated teachers who already teach British and international curricula. That lets us offer experienced one-to-one tutors at a fraction of local prices in North America, Europe or Australia."),
     ("Will the lesson times suit us?",
-     "Yes. Our tutors teach on your schedule: after school and at weekends in US Eastern, Central, Mountain and Pacific time, and in UK and European time. You choose the slot."),
+     "Yes. Our tutors teach on your schedule: after school and at weekends in the USA and Canada, the UK and Europe, Australia and New Zealand, and anywhere else in the world. You choose the slot."),
     ("Is the free trial really free?",
      "Yes. The first 30-minute lesson is free, with no payment details needed. If it is not the right fit, you owe nothing."),
     ("How do online lessons work?",
@@ -124,7 +127,7 @@ FAQS = [
     ("Which curriculum do you follow?",
      "Your child's. Tell us the school grade or year, the curriculum (for example Common Core, GCSE, IGCSE or IB MYP) and what they are studying in class, and the tutor follows it."),
     ("How do I pay?",
-     "Prices are in US dollars or euros. After the free trial we confirm your plan and payment details in writing. Online card payment is coming soon."),
+     "Prices are in US dollars or euros, and families in Canada, the UK, Australia, New Zealand and elsewhere can pay the equivalent in their own currency. After the free trial we confirm your plan and payment details in writing. Online card payment is coming soon."),
     ("Can I change tutor or cancel?",
      "Yes. You can ask for a different tutor at any time. Lessons can be rescheduled with 24 hours' notice, and monthly plans can be stopped before the next month starts."),
     ("Do you offer a sibling discount?",
@@ -252,9 +255,10 @@ ORG = {
     "logo": SITE + "/assets/logo/hamraah-crest-full-colour.png",
     "image": SITE + "/assets/og-image.jpg",
     "email": EMAIL,
-    "description": "Online one-to-one tutoring in Maths, English and Science for school students in the USA, UK and Europe, grades 3 to 10, plus SAT and GCSE preparation, with vetted tutors from Pakistan.",
-    "areaServed": [{"@type": "Country", "name": "United States"}, {"@type": "Country", "name": "United Kingdom"},
-                   {"@type": "Place", "name": "Europe"}],
+    "description": "Online one-to-one tutoring in Maths, English and Science for school students worldwide, including the USA, Canada, the UK, Europe, Australia and New Zealand, grades 3 to 10, plus SAT and GCSE preparation, with vetted tutors from Pakistan.",
+    "areaServed": [{"@type": "Country", "name": "United States"}, {"@type": "Country", "name": "Canada"}, {"@type": "Country", "name": "United Kingdom"},
+                   {"@type": "Place", "name": "Europe"}, {"@type": "Country", "name": "Australia"},
+                   {"@type": "Country", "name": "New Zealand"}],
     "knowsAbout": ["Online tutoring", "Maths tutoring", "English tutoring", "Science tutoring", "SAT preparation", "GCSE preparation"],
 }
 WEBSITE = {"@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "name": BRAND,
@@ -281,7 +285,7 @@ def offers_schema():
     offers.append({"@type": "Offer", "name": "Free trial lesson (30 minutes)", "price": "0", "priceCurrency": "USD",
                    "url": SITE + "/book"})
     return {"@type": "Service", "serviceType": "Online tutoring",
-            "provider": {"@id": SITE + "/#organization"}, "areaServed": ["United States", "United Kingdom", "Europe"],
+            "provider": {"@id": SITE + "/#organization"}, "areaServed": ["United States", "Canada", "United Kingdom", "Europe", "Australia", "New Zealand", "Worldwide"],
             "audience": {"@type": "EducationalAudience", "educationalRole": "student"},
             "offers": offers}
 
@@ -359,7 +363,7 @@ def layout(path, title, desc, body, schema=(), crumb=None):
     <div class="wrap footer-inner">
       <div class="footer-brand">
         <img src="/assets/logo/hamraah-horizontal-gold-foil.svg" alt="Hamraah" width="729" height="230">
-        <p>Online tutoring for school students in the USA, UK and Europe</p>
+        <p>Online tutoring for school students all over the world</p>
       </div>
       <nav class="footer-nav" aria-label="Footer">{nav}<a href="/book">Book a free trial</a></nav>
       <div class="footer-contact">
@@ -394,12 +398,12 @@ def page(path, filename, title, desc, crumb=None, schema=(), priority="0.8"):
 
 @page("/", "index.html",
       "Online Maths, English & Science Tutors | Hamraah Tutoring",
-      "One-to-one online tutoring for grades 3 to 10 in the USA, UK and Europe, plus SAT and GCSE prep. Vetted tutors, lessons in your time zone, free trial.",
+      "One-to-one online tutoring worldwide for grades 3 to 10: USA, Canada, UK, Europe, Australia and NZ. SAT and GCSE prep too. Vetted tutors, free trial.",
       priority="1.0")
 def home():
     hero = f'''<section class="hero"><div class="pattern" aria-hidden="true"></div>
 <div class="wrap hero-inner"><div class="hero-copy">
-<p class="eyebrow">Online tutoring · USA, UK &amp; Europe</p>
+<p class="eyebrow">Online tutoring worldwide · USA, Canada, UK, Europe, Australia &amp; NZ</p>
 <h1>Expert tutors who help your child <em>truly understand</em></h1>
 <p class="lede">One-to-one online lessons in <strong>Maths, English and Science for grades 3 to 10</strong>, plus SAT and GCSE preparation. Qualified, background-checked tutors who follow your child's school curriculum, at times that fit your family.</p>
 <div class="hero-cta"><a class="btn btn-gold" href="/book">Book a free trial lesson</a><a class="btn btn-ghost" href="/pricing">See prices</a></div>
@@ -408,7 +412,7 @@ def home():
 <section class="strip" aria-label="Highlights"><div class="wrap strip-inner">
 <div><span class="num">3–10</span><span class="lbl">School grades in Maths, English and Science</span></div>
 <div><span class="num">1:1</span><span class="lbl">Live lessons on Zoom or Google Meet</span></div>
-<div><span class="num">Your time</span><span class="lbl">After school and weekends, US and European time</span></div>
+<div><span class="num">Your time</span><span class="lbl">After school and weekends, wherever you live</span></div>
 <div><span class="num">$0</span><span class="lbl">Your first 30-minute lesson is free</span></div>
 </div></section>'''
     return "\n".join([
@@ -433,7 +437,7 @@ def home():
 
 @page("/subjects", "subjects.html",
       "Maths, English, Science, SAT & GCSE Tutoring | Hamraah",
-      "Online tutoring in Maths, English and Science for grades 3 to 10, plus SAT and GCSE or IGCSE prep, matched to US, UK and European school curricula.",
+      "Online tutoring in Maths, English and Science for grades 3 to 10, plus SAT and GCSE or IGCSE prep, matched to school curricula worldwide.",
       crumb="Subjects", schema=(courses_schema(),))
 def subjects():
     return "\n".join([
@@ -455,10 +459,11 @@ def how():
 <div><h3>What parents receive</h3><ul>
 <li>A written learning plan after the free trial</li><li>Short notes after every lesson</li><li>A monthly progress report</li><li>A parent call whenever you want one</li></ul></div></div>'''
     zones = '''<div class="zones">
-<div><p class="kicker">US East Coast</p><p class="t">4 pm to 8 pm</p><p>Weekdays after school, plus weekend mornings</p></div>
-<div><p class="kicker">US Central to Pacific</p><p class="t">3 pm to 7 pm</p><p>Weekdays after school, plus weekend mornings</p></div>
+<div><p class="kicker">US and Canada, Eastern</p><p class="t">4 pm to 8 pm</p><p>Weekdays after school, plus weekend mornings</p></div>
+<div><p class="kicker">US and Canada, Central to Pacific</p><p class="t">3 pm to 7 pm</p><p>Weekdays after school, plus weekend mornings</p></div>
 <div><p class="kicker">UK and Europe</p><p class="t">4 pm to 9 pm</p><p>Weekdays after school, plus weekends all day</p></div>
-</div><p class="center-note">Times shown in your local time. Our tutors in Pakistan work the hours that suit you.</p>'''
+<div><p class="kicker">Australia and New Zealand</p><p class="t">3 pm to 8 pm</p><p>Weekdays after school, plus weekends all day</p></div>
+</div><p class="center-note">Times shown in your local time. Living somewhere else? Tell us, and our tutors in Pakistan will work the hours that suit you.</p>'''
     return "\n".join([
         page_hero("How it works", "Simple for parents, <em>effective for children</em>",
                   "Four easy steps from your first message to steady progress, with you informed at every stage.", "How it works"),
@@ -475,11 +480,11 @@ def how():
       crumb="Tutors")
 def tutors():
     join = f'''<div class="join"><div><p class="eyebrow">For teachers in Pakistan</p><h2>Become a Hamraah tutor</h2><span class="rule"></span>
-<p class="sub left">Are you a qualified teacher with fluent English and experience of US, British or international curricula? Teach students abroad from home, on a steady schedule.</p></div>
+<p class="sub left">Are you a qualified teacher with fluent English and experience of American, British, Australian or international curricula? Teach students around the world from home, on a steady schedule.</p></div>
 <a class="btn btn-maroon" href="mailto:{EMAIL}?subject=Become%20a%20Hamraah%20tutor">Apply to teach</a></div>'''
     return "\n".join([
         page_hero("Our tutors", "Experienced teachers, <em>carefully chosen</em>",
-                  "Our tutors are qualified teachers and subject specialists in Pakistan, with fluent English and experience teaching US, British and international curricula.", "Tutors"),
+                  "Our tutors are qualified teachers and subject specialists in Pakistan, with fluent English and experience teaching American, British, Australian and international curricula.", "Tutors"),
         section(tutors_grid(detailed=True) + '<p class="center-note">Individual tutor profiles with photos, qualifications and parent reviews are coming soon.</p>'),
         section(section_head("How we choose tutors", "Every tutor is checked, <em>before they teach</em>",
                              "Only a small share of applicants become Hamraah tutors.") + promises_grid(VETTING), "dark", pattern=True),
@@ -531,7 +536,7 @@ def safeguarding():
     data = '''<div class="dest"><div><h3>Lesson recordings</h3><p>With your consent, lessons are recorded so they can be reviewed if a question or concern ever comes up. Recordings are stored privately, are never shared, and are deleted after 30 days. You can opt out of recording at any time.</p></div>
 <div><h3>Your family's data</h3><p>We ask only for what we need: your name and contact details, and your child's first name, grade and curriculum. We never sell or share family data, and we delete it on request when you stop lessons.</p></div></div>'''
     report = f'''<div class="join"><div><p class="eyebrow">Report a concern</p><h2>Worried about something?</h2><span class="rule"></span>
-<p class="sub left">Contact us straight away by WhatsApp on {WHATSAPP_DISPLAY} or by email with the subject "Safeguarding". If a child is in immediate danger, call your local emergency number first (911 in the USA, 999 in the UK, 112 in Europe).</p></div>
+<p class="sub left">Contact us straight away by WhatsApp on {WHATSAPP_DISPLAY} or by email with the subject "Safeguarding". If a child is in immediate danger, call your local emergency number first (for example 911 in the USA and Canada, 999 in the UK, 112 in Europe, 000 in Australia, 111 in New Zealand).</p></div>
 <a class="btn btn-maroon" href="mailto:{EMAIL}?subject=Safeguarding%20concern">Report a concern</a></div>'''
     return "\n".join([
         page_hero("Safeguarding", "Your child's safety <em>comes first</em>",
@@ -546,7 +551,7 @@ def safeguarding():
 
 @page("/faq", "faq.html",
       "Online Tutoring FAQ for Parents | Hamraah Tutoring",
-      "Answers for parents in the USA, UK and Europe: who the tutors are, lesson times, the free trial, online safety, curricula, prices and payments.",
+      "Answers for parents worldwide: who the tutors are, lesson times, the free trial, online safety, curricula, prices and payments.",
       crumb="FAQ", schema=(faq_schema(FAQS),))
 def faq():
     return "\n".join([
@@ -582,7 +587,7 @@ def book():
 <div class="row2"><label>Parent's name<input name="name" type="text" autocomplete="name" required></label>
 <label>WhatsApp number<input name="phone" type="tel" autocomplete="tel" placeholder="+1 555 123 4567" required></label></div>
 <div class="row2"><label>Email<input name="email" type="email" autocomplete="email" required></label>
-<label>Country<select name="country"><option>USA</option><option>UK</option><option>Germany</option><option>France</option><option>Netherlands</option><option>Ireland</option><option>Italy</option><option>Spain</option><option>Other in Europe</option><option>Other</option></select></label></div>
+<label>Country<select name="country"><option>USA</option><option>Canada</option><option>UK</option><option>Germany</option><option>France</option><option>Netherlands</option><option>Ireland</option><option>Italy</option><option>Spain</option><option>Other in Europe</option><option>Australia</option><option>New Zealand</option><option>UAE</option><option>Saudi Arabia</option><option>Other</option></select></label></div>
 <div class="row2"><label>Child's first name<input name="child" type="text" autocomplete="off"></label>
 <label>School grade<select name="grade">{grade_opts}</select></label></div>
 <div class="row2"><label>Subject<select name="subject">{subj_opts}</select></label>
